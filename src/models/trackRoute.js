@@ -1,10 +1,11 @@
-const express = require('express');
-const trackController = require('./controllers/trackController');
-const router = express.Router();
+const express = require('express')
+const trackController = require('../controllers/trackController')
 
+const router = express.Router()
 
-router.get('/:id', trackController.listTrack);
-router.post('/', trackController.postTrack);
-router.put('/', trackController.updateTrack);
-router.delete('/', trackController.deleteTrack);
-module.exports = router;
+router.get('/', trackController.getTracks)
+router.get("/:id", trackController.getTracks)
+router.post('/', trackController.postTrack)
+router.put('/:id', trackController.putTrack)
+router.delete('/:id', trackController.deleteTrack)
+module.exports = router

@@ -1,10 +1,13 @@
-const express = require('express');
-const albumController = require('./controllers/albumController');
-const router = express.Router();
+const express = require('express')
+const albumController = require('../controllers/albumController')
 
+const router = express.Router()
 
-router.get('/:id', albumController.listAlbum);
-router.post('/', albumController.postAlbum);
-router.put('/', albumController.updateAlbum);
-router.delete('/', albumController.deleteAlbum);
+router.get('/', albumController.getAlbums)
+router.get('/:id', albumController.getAlbum)
+router.get('/:id/track', albumController.getAlbumTrack)
+router.post('/', albumController.postAlbum)
+router.put('/:id', albumController.updateAlbum)
+router.delete('/:id', albumController.deleteAlbum)
+
 module.exports = router;

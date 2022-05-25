@@ -1,0 +1,56 @@
+CREATE DATABASE checkpoint3;
+
+CREATE TABLE track (
+ID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+title VARCHAR(128) NULL,
+youtube_url VARCHAR(255) NULL
+);
+
+CREATE TABLE album (
+ID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+id_track,
+title VARCHAR(255) NULL,
+genre VARCHAR(255) NULL,
+picture VARCHAR(255) NULL,
+artist VARCHAR(255) NULL
+);
+
+ALTER TABLE track ADD id_album INT NOT NULL;
+
+
+ALTER TABLE track ADD FOREIGN KEY (id_album) REFERENCES album(id);
+
+
+
++-----------------------+
+| Tables_in_checkpoint3 |
++-----------------------+
+| album                 |
+| track                 |
++-----------------------+
+
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| ID      | int          | NO   | PRI | NULL    | auto_increment |
+| title   | varchar(255) | YES  |     | NULL    |                |
+| genre   | varchar(255) | YES  |     | NULL    |                |
+| picture | varchar(255) | YES  |     | NULL    |                |
+| artist  | varchar(255) | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| ID          | int          | NO   | PRI | NULL    | auto_increment |
+| title       | varchar(128) | YES  |     | NULL    |                |
+| youtube_url | varchar(255) | YES  |     | NULL    |                |
+| id_album    | int          | NO   | MUL | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+
+GET localhost:8000/api/album
+
+{
+  "title" : "J'ai mal aux dents",
+  "id_album": 1
+}
